@@ -6,12 +6,10 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-
 import com.veselovvv.mytasks.App;
 import com.veselovvv.mytasks.R;
 import com.veselovvv.mytasks.Task;
@@ -21,14 +19,15 @@ public class TaskDetailsActivity extends AppCompatActivity {
     private static final String EXTRA_TASK = "TaskDetailsActivity.EXTRA_TASK";
 
     private Task task;
-
     private EditText editText;
 
     public static void start(Activity caller, Task task) {
         Intent intent = new Intent(caller, TaskDetailsActivity.class);
+        
         if (task != null) {
             intent.putExtra(EXTRA_TASK, task);
         }
+        
         caller.startActivity(intent);
     }
 
@@ -72,15 +71,19 @@ public class TaskDetailsActivity extends AppCompatActivity {
                     task.text = editText.getText().toString();
                     task.done = false;
                     task.timestamp = System.currentTimeMillis();
+                    
                     if (getIntent().hasExtra(EXTRA_TASK)) {
                         App.getInstance().getTaskDao().update(task);
                     } else {
                         App.getInstance().getTaskDao().insert(task);
                     }
+                    
                     finish();
                 }
+                
                 break;
         }
+        
         return super.onOptionsItemSelected(item);
     }
 }
