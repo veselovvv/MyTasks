@@ -1,9 +1,7 @@
 package com.veselovvv.mytasks;
 
 import android.app.Application;
-
 import androidx.room.Room;
-
 import com.veselovvv.mytasks.data.AppDatabase;
 import com.veselovvv.mytasks.data.TaskDao;
 
