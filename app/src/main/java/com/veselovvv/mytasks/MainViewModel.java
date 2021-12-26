@@ -2,9 +2,7 @@ package com.veselovvv.mytasks;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
-
 import java.util.List;
-
 import com.veselovvv.mytasks.Task;
 import com.veselovvv.mytasks.App;
 
