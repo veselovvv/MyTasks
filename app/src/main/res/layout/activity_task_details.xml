@@ -20,5 +20,5 @@
         android:hint="@string/task_text"
         android:minHeight="200dp"
         android:gravity="top"
-        android:padding="16dp"/>
+        android:padding="16dp" />
 </LinearLayout>
