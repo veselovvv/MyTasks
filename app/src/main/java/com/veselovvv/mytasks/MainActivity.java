@@ -7,16 +7,12 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import android.os.Bundle;
 import android.view.View;
-
 import java.util.List;
-
 import com.veselovvv.mytasks.Task;
 import com.veselovvv.mytasks.TaskDetailsActivity;
 import com.veselovvv.mytasks.R;
-
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class MainActivity extends AppCompatActivity {
@@ -40,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
 
         FloatingActionButton fab = findViewById(R.id.fab);
+        
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -48,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         MainViewModel mainViewModel = ViewModelProviders.of(this).get(MainViewModel.class);
+        
         mainViewModel.getTaskLiveData().observe(this, new Observer<List<Task>>() {
             @Override
             public void onChanged(List<Task> tasks) {

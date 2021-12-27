@@ -2,7 +2,6 @@ package com.veselovvv.mytasks;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
@@ -22,8 +21,7 @@ public class Task implements Parcelable {
     @ColumnInfo(name = "done")
     public boolean done;
 
-    public Task() {
-    }
+    public Task() {}
 
     @Override
     public boolean equals(Object o) {
@@ -35,15 +33,18 @@ public class Task implements Parcelable {
         if (uid != task.uid) return false;
         if (timestamp != task.timestamp) return false;
         if (done != task.done) return false;
+        
         return text != null ? text.equals(task.text) : task.text == null;
     }
 
     @Override
     public int hashCode() {
         int result = uid;
+        
         result = 31 * result + (text != null ? text.hashCode() : 0);
         result = 31 * result + (int) (timestamp ^ (timestamp >>> 32));
         result = 31 * result + (done ? 1 : 0);
+        
         return result;
     }
 

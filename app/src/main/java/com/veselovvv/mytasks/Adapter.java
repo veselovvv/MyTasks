@@ -8,13 +8,10 @@ import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.SortedList;
-
 import java.util.List;
-
 import com.veselovvv.mytasks.App;
 import com.veselovvv.mytasks.Task;
 import com.veselovvv.mytasks.TaskDetailsActivity;
@@ -25,16 +22,17 @@ public class Adapter extends RecyclerView.Adapter<Adapter.TaskViewHolder> {
     private SortedList<Task> sortedList;
 
     public Adapter() {
-
         sortedList = new SortedList<>(Task.class, new SortedList.Callback<Task>() {
             @Override
             public int compare(Task o1, Task o2) {
                 if (!o2.done && o1.done) {
                     return 1;
                 }
+                
                 if (o2.done && !o1.done) {
                     return -1;
                 }
+                
                 return (int) (o2.timestamp - o1.timestamp);
             }
 
@@ -74,7 +72,8 @@ public class Adapter extends RecyclerView.Adapter<Adapter.TaskViewHolder> {
     @Override
     public TaskViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         return new TaskViewHolder(
-                LayoutInflater.from(parent.getContext()).inflate(R.layout.item_task_list, parent, false));
+            LayoutInflater.from(parent.getContext()).inflate(R.layout.item_task_list, parent, false)
+        );
     }
 
     @Override
@@ -129,10 +128,10 @@ public class Adapter extends RecyclerView.Adapter<Adapter.TaskViewHolder> {
                         task.done = checked;
                         App.getInstance().getTaskDao().update(task);
                     }
+                    
                     updateStrokeOut();
                 }
             });
-
         }
 
         public void bind(Task task) {
