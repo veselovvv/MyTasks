@@ -10,9 +10,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.os.Bundle;
 import android.view.View;
 import java.util.List;
-import com.veselovvv.mytasks.Task;
-import com.veselovvv.mytasks.TaskDetailsActivity;
-import com.veselovvv.mytasks.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class MainActivity extends AppCompatActivity {

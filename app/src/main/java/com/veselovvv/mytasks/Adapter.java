@@ -12,10 +12,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.SortedList;
 import java.util.List;
-import com.veselovvv.mytasks.App;
-import com.veselovvv.mytasks.Task;
-import com.veselovvv.mytasks.TaskDetailsActivity;
-import com.veselovvv.mytasks.R;
 
 public class Adapter extends RecyclerView.Adapter<Adapter.TaskViewHolder> {
 

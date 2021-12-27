@@ -10,9 +10,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import com.veselovvv.mytasks.App;
-import com.veselovvv.mytasks.R;
-import com.veselovvv.mytasks.Task;
 
 public class TaskDetailsActivity extends AppCompatActivity {
 
