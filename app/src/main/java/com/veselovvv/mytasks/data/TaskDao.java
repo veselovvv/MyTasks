@@ -8,7 +8,7 @@ import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 import androidx.room.Update;
 import java.util.List;
-import com.veselovvv.mytasks.Task;
+import com.veselovvv.mytasks.models.Task;
 
 @Dao
 public interface TaskDao {

@@ -1,4 +1,4 @@
-package com.veselovvv.mytasks;
+package com.veselovvv.mytasks.activities;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -11,6 +11,10 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import com.veselovvv.mytasks.App;
+import com.veselovvv.mytasks.R;
+import com.veselovvv.mytasks.models.Task;
+
 public class TaskDetailsActivity extends AppCompatActivity {
 
     private static final String EXTRA_TASK = "TaskDetailsActivity.EXTRA_TASK";
@@ -20,11 +24,8 @@ public class TaskDetailsActivity extends AppCompatActivity {
 
     public static void start(Activity caller, Task task) {
         Intent intent = new Intent(caller, TaskDetailsActivity.class);
-        
-        if (task != null) {
-            intent.putExtra(EXTRA_TASK, task);
-        }
-        
+
+        if (task != null) { intent.putExtra(EXTRA_TASK, task); }
         caller.startActivity(intent);
     }
 
@@ -77,7 +78,6 @@ public class TaskDetailsActivity extends AppCompatActivity {
                     
                     finish();
                 }
-                
                 break;
         }
         

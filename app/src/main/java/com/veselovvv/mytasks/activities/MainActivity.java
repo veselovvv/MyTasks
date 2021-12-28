@@ -1,4 +1,4 @@
-package com.veselovvv.mytasks;
+package com.veselovvv.mytasks.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -11,6 +11,10 @@ import android.os.Bundle;
 import android.view.View;
 import java.util.List;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.veselovvv.mytasks.viewmodels.MainViewModel;
+import com.veselovvv.mytasks.R;
+import com.veselovvv.mytasks.adapters.Adapter;
+import com.veselovvv.mytasks.models.Task;
 
 public class MainActivity extends AppCompatActivity {
 

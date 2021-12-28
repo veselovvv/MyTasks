@@ -1,4 +1,4 @@
-package com.veselovvv.mytasks;
+package com.veselovvv.mytasks.models;
 
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -64,19 +64,13 @@ public class Task implements Parcelable {
     }
 
     @Override
-    public int describeContents() {
-        return 0;
-    }
+    public int describeContents() { return 0; }
 
     public static final Creator<Task> CREATOR = new Creator<Task>() {
         @Override
-        public Task createFromParcel(Parcel in) {
-            return new Task(in);
-        }
+        public Task createFromParcel(Parcel in) { return new Task(in); }
 
         @Override
-        public Task[] newArray(int size) {
-            return new Task[size];
-        }
+        public Task[] newArray(int size) { return new Task[size]; }
     };
 }

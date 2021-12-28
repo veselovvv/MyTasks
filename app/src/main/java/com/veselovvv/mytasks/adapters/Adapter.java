@@ -1,4 +1,4 @@
-package com.veselovvv.mytasks;
+package com.veselovvv.mytasks.adapters;
 
 import android.app.Activity;
 import android.graphics.Paint;
@@ -11,6 +11,12 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.SortedList;
+
+import com.veselovvv.mytasks.App;
+import com.veselovvv.mytasks.R;
+import com.veselovvv.mytasks.activities.TaskDetailsActivity;
+import com.veselovvv.mytasks.models.Task;
+
 import java.util.List;
 
 public class Adapter extends RecyclerView.Adapter<Adapter.TaskViewHolder> {
