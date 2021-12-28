@@ -11,12 +11,10 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.SortedList;
-
 import com.veselovvv.mytasks.App;
 import com.veselovvv.mytasks.R;
 import com.veselovvv.mytasks.activities.TaskDetailsActivity;
 import com.veselovvv.mytasks.models.Task;
-
 import java.util.List;
 
 public class Adapter extends RecyclerView.Adapter<Adapter.TaskViewHolder> {
@@ -27,13 +25,8 @@ public class Adapter extends RecyclerView.Adapter<Adapter.TaskViewHolder> {
         sortedList = new SortedList<>(Task.class, new SortedList.Callback<Task>() {
             @Override
             public int compare(Task o1, Task o2) {
-                if (!o2.done && o1.done) {
-                    return 1;
-                }
-                
-                if (o2.done && !o1.done) {
-                    return -1;
-                }
+                if (!o2.done && o1.done) { return 1; }
+                if (o2.done && !o1.done) { return -1; }
                 
                 return (int) (o2.timestamp - o1.timestamp);
             }
@@ -84,20 +77,14 @@ public class Adapter extends RecyclerView.Adapter<Adapter.TaskViewHolder> {
     }
 
     @Override
-    public int getItemCount() {
-        return sortedList.size();
-    }
+    public int getItemCount() { return sortedList.size(); }
 
-    public void setItems(List<Task> tasks) {
-        sortedList.replaceAll(tasks);
-    }
+    public void setItems(List<Task> tasks) { sortedList.replaceAll(tasks); }
 
     static class TaskViewHolder extends RecyclerView.ViewHolder {
-
         TextView taskText;
         CheckBox completed;
         View delete;
-
         Task task;
 
         boolean silentUpdate;

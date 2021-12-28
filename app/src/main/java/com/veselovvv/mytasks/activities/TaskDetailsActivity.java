@@ -10,7 +10,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-
 import com.veselovvv.mytasks.App;
 import com.veselovvv.mytasks.R;
 import com.veselovvv.mytasks.models.Task;
@@ -55,6 +54,7 @@ public class TaskDetailsActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_details, menu);
+
         return super.onCreateOptionsMenu(menu);
     }
 
