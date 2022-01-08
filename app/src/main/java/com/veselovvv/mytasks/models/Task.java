@@ -6,6 +6,8 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+import java.util.Objects;
+
 @Entity
 public class Task implements Parcelable {
 
@@ -34,7 +36,7 @@ public class Task implements Parcelable {
         if (timestamp != task.timestamp) return false;
         if (done != task.done) return false;
         
-        return text != null ? text.equals(task.text) : task.text == null;
+        return Objects.equals(text, task.text);
     }
 
     @Override

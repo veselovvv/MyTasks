@@ -18,8 +18,6 @@ import com.veselovvv.mytasks.models.Task;
 
 public class MainActivity extends AppCompatActivity {
 
-    private RecyclerView recyclerView;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,10 +26,13 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        recyclerView = findViewById(R.id.list);
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, RecyclerView.VERTICAL, false);
-        recyclerView.setLayoutManager(linearLayoutManager);
-        recyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
+        RecyclerView recyclerView = findViewById(R.id.list);
+        recyclerView.setLayoutManager(
+            new LinearLayoutManager(this, RecyclerView.VERTICAL, false)
+        );
+        recyclerView.addItemDecoration(
+            new DividerItemDecoration(this, DividerItemDecoration.VERTICAL)
+        );
 
         final Adapter adapter = new Adapter();
         recyclerView.setAdapter(adapter);
@@ -49,9 +50,7 @@ public class MainActivity extends AppCompatActivity {
         
         mainViewModel.getTaskLiveData().observe(this, new Observer<List<Task>>() {
             @Override
-            public void onChanged(List<Task> tasks) {
-                adapter.setItems(tasks);
-            }
+            public void onChanged(List<Task> tasks) { adapter.setItems(tasks); }
         });
     }
 }

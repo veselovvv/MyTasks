@@ -6,22 +6,21 @@ import com.veselovvv.mytasks.data.AppDatabase;
 import com.veselovvv.mytasks.data.TaskDao;
 
 public class App extends Application {
+
     private AppDatabase database;
     private TaskDao taskDao;
-
     private static App instance;
-
-    public static App getInstance() { return instance; }
 
     @Override
     public void onCreate() {
         super.onCreate();
         instance = this;
 
-        database = Room.databaseBuilder(getApplicationContext(),
-                AppDatabase.class, "app-db-name")
-                .allowMainThreadQueries()
-                .build();
+        database = Room.databaseBuilder(
+            getApplicationContext(),
+            AppDatabase.class, "app-db-name"
+        ).allowMainThreadQueries()
+        .build();
 
         taskDao = database.taskDao();
     }
@@ -33,4 +32,6 @@ public class App extends Application {
     public TaskDao getTaskDao() { return taskDao; }
 
     public void setTaskDao(TaskDao taskDao) { this.taskDao = taskDao; }
+
+    public static App getInstance() { return instance; }
 }

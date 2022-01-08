@@ -70,11 +70,8 @@ public class TaskDetailsActivity extends AppCompatActivity {
                     task.done = false;
                     task.timestamp = System.currentTimeMillis();
                     
-                    if (getIntent().hasExtra(EXTRA_TASK)) {
-                        App.getInstance().getTaskDao().update(task);
-                    } else {
-                        App.getInstance().getTaskDao().insert(task);
-                    }
+                    if (getIntent().hasExtra(EXTRA_TASK)) App.getInstance().getTaskDao().update(task);
+                    else App.getInstance().getTaskDao().insert(task);
                     
                     finish();
                 }
