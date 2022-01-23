@@ -15,9 +15,7 @@ import com.veselovvv.mytasks.R;
 import com.veselovvv.mytasks.models.Task;
 
 public class TaskDetailsActivity extends AppCompatActivity {
-
     private static final String EXTRA_TASK = "TaskDetailsActivity.EXTRA_TASK";
-
     private Task task;
     private EditText editText;
 
@@ -31,30 +29,36 @@ public class TaskDetailsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_task_details);
-
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setHomeButtonEnabled(true);
-
+        setupToolbar();
         setTitle(getString(R.string.task_details_title));
-
         editText = findViewById(R.id.text);
+        setTaskTextOrCreateTask();
+    }
 
+    private void setTaskTextOrCreateTask() {
         if (getIntent().hasExtra(EXTRA_TASK)) {
-            task = getIntent().getParcelableExtra(EXTRA_TASK);
-            editText.setText(task.text);
+            setTaskText();
         } else {
             task = new Task();
         }
     }
 
+    private void setupToolbar() {
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
+    }
+
+    private void setTaskText() {
+        task = getIntent().getParcelableExtra(EXTRA_TASK);
+        editText.setText(task.text);
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_details, menu);
-
         return super.onCreateOptionsMenu(menu);
     }
 

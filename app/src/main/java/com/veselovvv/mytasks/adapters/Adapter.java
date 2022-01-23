@@ -18,7 +18,6 @@ import com.veselovvv.mytasks.models.Task;
 import java.util.List;
 
 public class Adapter extends RecyclerView.Adapter<Adapter.TaskViewHolder> {
-
     private SortedList<Task> sortedList;
 
     public Adapter() {
@@ -86,15 +85,11 @@ public class Adapter extends RecyclerView.Adapter<Adapter.TaskViewHolder> {
         CheckBox completed;
         View delete;
         Task task;
-
         boolean silentUpdate;
 
         public TaskViewHolder(@NonNull final View itemView) {
             super(itemView);
-
-            taskText = itemView.findViewById(R.id.task_text);
-            completed = itemView.findViewById(R.id.completed);
-            delete = itemView.findViewById(R.id.delete);
+            findViewsById();
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -121,6 +116,12 @@ public class Adapter extends RecyclerView.Adapter<Adapter.TaskViewHolder> {
                     updateStrokeOut();
                 }
             });
+        }
+
+        private void findViewsById() {
+            taskText = itemView.findViewById(R.id.task_text);
+            completed = itemView.findViewById(R.id.completed);
+            delete = itemView.findViewById(R.id.delete);
         }
 
         public void bind(Task task) {
