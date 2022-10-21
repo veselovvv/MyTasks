@@ -5,12 +5,10 @@ import android.os.Parcelable;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
-
 import java.util.Objects;
 
 @Entity
 public class Task implements Parcelable {
-
     @PrimaryKey(autoGenerate = true)
     public int uid;
 
@@ -24,6 +22,13 @@ public class Task implements Parcelable {
     public boolean done;
 
     public Task() {}
+
+    protected Task(Parcel in) {
+        uid = in.readInt();
+        text = in.readString();
+        timestamp = in.readLong();
+        done = in.readByte() != 0;
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -48,13 +53,6 @@ public class Task implements Parcelable {
         result = 31 * result + (done ? 1 : 0);
         
         return result;
-    }
-
-    protected Task(Parcel in) {
-        uid = in.readInt();
-        text = in.readString();
-        timestamp = in.readLong();
-        done = in.readByte() != 0;
     }
 
     @Override

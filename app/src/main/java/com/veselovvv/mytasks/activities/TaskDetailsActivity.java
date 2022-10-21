@@ -22,7 +22,7 @@ public class TaskDetailsActivity extends AppCompatActivity {
     public static void start(Activity caller, Task task) {
         Intent intent = new Intent(caller, TaskDetailsActivity.class);
 
-        if (task != null) { intent.putExtra(EXTRA_TASK, task); }
+        if (task != null) intent.putExtra(EXTRA_TASK, task);
         caller.startActivity(intent);
     }
 
@@ -30,30 +30,19 @@ public class TaskDetailsActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_task_details);
-        setupToolbar();
-        setTitle(getString(R.string.task_details_title));
-        editText = findViewById(R.id.text);
-        setTaskTextOrCreateTask();
-    }
 
-    private void setTaskTextOrCreateTask() {
-        if (getIntent().hasExtra(EXTRA_TASK)) {
-            setTaskText();
-        } else {
-            task = new Task();
-        }
-    }
-
-    private void setupToolbar() {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
-    }
+        setTitle(getString(R.string.task_details_title));
+        editText = findViewById(R.id.text);
 
-    private void setTaskText() {
-        task = getIntent().getParcelableExtra(EXTRA_TASK);
-        editText.setText(task.text);
+        if (getIntent().hasExtra(EXTRA_TASK)) {
+            task = getIntent().getParcelableExtra(EXTRA_TASK);
+            if (task != null) editText.setText(task.text); else editText.setText(R.string.no_text);
+        } else
+            task = new Task();
     }
 
     @Override

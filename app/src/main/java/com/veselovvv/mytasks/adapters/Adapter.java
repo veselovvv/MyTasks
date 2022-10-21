@@ -18,7 +18,7 @@ import com.veselovvv.mytasks.models.Task;
 import java.util.List;
 
 public class Adapter extends RecyclerView.Adapter<Adapter.TaskViewHolder> {
-    private SortedList<Task> sortedList;
+    private final SortedList<Task> sortedList;
 
     public Adapter() {
         sortedList = new SortedList<>(Task.class, new SortedList.Callback<Task>() {
@@ -81,15 +81,17 @@ public class Adapter extends RecyclerView.Adapter<Adapter.TaskViewHolder> {
     public void setItems(List<Task> tasks) { sortedList.replaceAll(tasks); }
 
     static class TaskViewHolder extends RecyclerView.ViewHolder {
-        TextView taskText;
-        CheckBox completed;
-        View delete;
-        Task task;
-        boolean silentUpdate;
+        private final TextView taskTextView;
+        private final CheckBox completedCheckBox;
+        private Task task;
+        private boolean silentUpdate;
 
         public TaskViewHolder(@NonNull final View itemView) {
             super(itemView);
-            findViewsById();
+
+            taskTextView = itemView.findViewById(R.id.task_text);
+            completedCheckBox = itemView.findViewById(R.id.completed);
+            View deleteView = itemView.findViewById(R.id.delete);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -98,49 +100,41 @@ public class Adapter extends RecyclerView.Adapter<Adapter.TaskViewHolder> {
                 }
             });
 
-            delete.setOnClickListener(new View.OnClickListener() {
+            deleteView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     App.getInstance().getTaskDao().delete(task);
                 }
             });
 
-            completed.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            completedCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                 @Override
                 public void onCheckedChanged(CompoundButton compoundButton, boolean checked) {
                     if (!silentUpdate) {
                         task.done = checked;
                         App.getInstance().getTaskDao().update(task);
                     }
-                    
+
                     updateStrokeOut();
                 }
             });
         }
 
-        private void findViewsById() {
-            taskText = itemView.findViewById(R.id.task_text);
-            completed = itemView.findViewById(R.id.completed);
-            delete = itemView.findViewById(R.id.delete);
-        }
-
         public void bind(Task task) {
             this.task = task;
-
-            taskText.setText(task.text);
+            taskTextView.setText(task.text);
             updateStrokeOut();
 
             silentUpdate = true;
-            completed.setChecked(task.done);
+            completedCheckBox.setChecked(task.done);
             silentUpdate = false;
         }
 
-        private void updateStrokeOut() {
-            if (task.done) {
-                taskText.setPaintFlags(taskText.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
-            } else {
-                taskText.setPaintFlags(taskText.getPaintFlags() & ~Paint.STRIKE_THRU_TEXT_FLAG);
-            }
+        public void updateStrokeOut() {
+            if (task.done)
+                taskTextView.setPaintFlags(taskTextView.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+            else
+                taskTextView.setPaintFlags(taskTextView.getPaintFlags() & ~Paint.STRIKE_THRU_TEXT_FLAG);
         }
     }
 }

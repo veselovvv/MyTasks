@@ -17,48 +17,42 @@ import com.veselovvv.mytasks.adapters.Adapter;
 import com.veselovvv.mytasks.models.Task;
 
 public class MainActivity extends AppCompatActivity {
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        setupToolbar();
-        Adapter adapter = new Adapter();
-        setupRecyclerView(adapter);
-        setupFab();
-        setupViewModel(adapter);
-    }
-
-    private void setupToolbar() {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        final Adapter adapter = new Adapter();
+        setupRecyclerView(adapter);
+        setupFab();
+
+        MainViewModel mainViewModel = ViewModelProviders.of(this).get(MainViewModel.class);
+        mainViewModel.getTaskLiveData().observe(this, new Observer<List<Task>>() {
+            @Override
+            public void onChanged(List<Task> tasks) { adapter.setItems(tasks); }
+        });
     }
 
-    private void setupRecyclerView(Adapter adapter) {
+    public void setupRecyclerView(Adapter adapter) {
         RecyclerView recyclerView = findViewById(R.id.list);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this, RecyclerView.VERTICAL, false));
-        recyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
+        recyclerView.setLayoutManager(
+                new LinearLayoutManager(this, RecyclerView.VERTICAL, false)
+        );
+        recyclerView.addItemDecoration(
+                new DividerItemDecoration(this, DividerItemDecoration.VERTICAL)
+        );
         recyclerView.setAdapter(adapter);
     }
 
-    private void setupFab() {
+    public void setupFab() {
         FloatingActionButton fab = findViewById(R.id.fab);
-
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 TaskDetailsActivity.start(MainActivity.this, null);
             }
-        });
-    }
-
-    private void setupViewModel(final Adapter adapter) {
-        MainViewModel mainViewModel = ViewModelProviders.of(this).get(MainViewModel.class);
-
-        mainViewModel.getTaskLiveData().observe(this, new Observer<List<Task>>() {
-            @Override
-            public void onChanged(List<Task> tasks) { adapter.setItems(tasks); }
         });
     }
 }

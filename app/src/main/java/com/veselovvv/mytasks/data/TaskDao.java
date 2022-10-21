@@ -12,7 +12,6 @@ import com.veselovvv.mytasks.models.Task;
 
 @Dao
 public interface TaskDao {
-
     @Query("SELECT * FROM Task")
     List<Task> getAll();
 

@@ -7,8 +7,9 @@ import com.veselovvv.mytasks.models.Task;
 import java.util.List;
 
 public class MainViewModel extends ViewModel {
+    private final LiveData<List<Task>> taskLiveData = App.getInstance().getTaskDao().getAllLiveData();
 
-    private LiveData<List<Task>> taskLiveData = App.getInstance().getTaskDao().getAllLiveData();
-
-    public LiveData<List<Task>> getTaskLiveData() { return taskLiveData; }
+    public LiveData<List<Task>> getTaskLiveData() {
+        return taskLiveData;
+    }
 }
